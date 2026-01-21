@@ -3,20 +3,24 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"main": "dist/index.es.js",
+	"main": "dist/index.umd.js",
 	"module": "dist/index.es.js",
-	"types": "dist/types/index.es.d.ts",
+	"types": "dist/types/index.d.ts",
 	"style": "dist/style.css",
-	"sideEffects": ["dist/**", "*.css"],
+	"sideEffects": [
+		"dist/**",
+		"*.css"
+	],
 	"files": [
 		"dist",
 		"src"
 	],
 	"exports": {
 		".": {
+			"types": "./dist/types/index.d.ts",
 			"import": "./dist/index.es.js",
 			"require": "./dist/index.umd.js",
-			"types": "./dist/types/index.es.d.ts"
+			"default": "./dist/index.es.js"
 		},
 		"./style.css": "./dist/style.css",
 		"./src/*": "./src/*"

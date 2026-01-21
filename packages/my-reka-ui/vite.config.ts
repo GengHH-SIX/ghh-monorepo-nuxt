@@ -7,20 +7,31 @@ import dts from 'vite-plugin-dts';
 // https://vite.dev/config/
 export default defineConfig({
 	plugins: [
-		vue(),
+		vue({
+			// 确保 Vue 文件的类型定义被正确生成
+			isProduction: false,
+		}),
 		tailwindcss(),
 		dts({
 			outDir: 'dist/types',
 			include: ['src/**/*.ts', 'src/**/*.vue'],
-			tsconfigPath: './tsconfig.app.json',  // 指定要使用的 tsconfig 文件
+			tsconfigPath: './tsconfig.app.json', // 指定要使用的 tsconfig 文件
 			compilerOptions: {
 				// 确保声明文件被生成
 				declaration: true,
-				emitDeclarationOnly: true,
+				declarationMap: true, // 1.生成声明映射文件
+				emitDeclarationOnly: false, // 只输出类型声明文件
 			},
-			// 启用组合模式生成单一类型文件
-			rollupTypes: true,
+			rollupTypes: false, // 2.先禁用 rollup，以便生成映射文件
 			insertTypesEntry: true, // 生成 index.d.ts 类型入口文件
+			/**
+			 *一、declarationMap: false,rollupTypes: true  insertTypesEntry: true,再配合packages.json中的types；
+			 *  这样配置会将所有的类型文件打包到一个文件中，不会生成单独的文件和map映射文件====》用于开发环境，方便调试
+			 *二、declarationMap: true,rollupTypes: false  insertTypesEntry: true,再配合packages.json中的types；
+			 *  这样配置不会将所有的类型文件打包到一个文件中，会生成map映射文件===》用于生产环境
+			 * */
+
+			copyDtsFiles: false,
 		}),
 	],
 	resolve: {
@@ -31,8 +42,8 @@ export default defineConfig({
 		},
 	},
 	build: {
-		sourcemap: true,  // 启用源码映射
-		cssCodeSplit: false,  // 确保 CSS 被打包到一个文件中
+		// sourcemap: true, // 启用源码映射
+		cssCodeSplit: false, // 确保 CSS 被打包到一个文件中
 		outDir: 'dist',
 		// 添加 lib 选项以支持样式输出
 		lib: {
@@ -55,8 +66,8 @@ export default defineConfig({
 					if (assetInfo.name === 'style.css') {
 						return 'style.css';
 					}
-					return assetInfo.name;
-				}
+					return assetInfo.name || '[name].[ext]';
+				},
 			},
 		},
 	},
