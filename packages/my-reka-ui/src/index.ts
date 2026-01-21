@@ -1,3 +1,4 @@
+import './assets/tailwind.css';
 // 统一导出所有组件
 import RekaButton from './components/Button';
 import RekaInfoCard from './components/Card';

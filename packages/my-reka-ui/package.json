@@ -22,7 +22,7 @@
 			"require": "./dist/index.umd.js",
 			"default": "./dist/index.es.js"
 		},
-		"./style.css": "./dist/style.css",
+		"./style.css": "./dist/my-reka-ui.css",
 		"./src/*": "./src/*"
 	},
 	"scripts": {
