@@ -1,0 +1,41 @@
+{
+	// "extends": "../../tsconfig.json",
+	// "compilerOptions": {
+	// 	"target": "ESNext",
+	// 	"useDefineForClassFields": true,
+	// 	"module": "ESNext",
+	// 	"moduleResolution": "Node",
+	// 	"strict": true,
+	// 	"jsx": "preserve",
+	// 	"resolveJsonModule": true,
+	// 	"isolatedModules": true,
+	// 	"esModuleInterop": true,
+	// 	"lib": ["ESNext", "DOM"],
+	// 	"skipLibCheck": true,
+	// 	"noEmit": true,
+	// 	"baseUrl": ".",
+	// 	"paths": {
+	// 		"@/*": ["src/*"],
+	// 		"@monorepo-nuxt/*": ["..//*/src"]
+	// 	}
+	// },
+	// "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+	// "references": [{ "path": "../my-shared" }]
+	"files": [],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@monorepo-nuxt/*": ["../*/src"]
+			// "@monorepo-nuxt/my-shared": ["../../packages/my-shared/src"],
+			// "@monorepo-nuxt/my-shared/*": ["../../packages/my-shared/src/*"]
+		}
+		// 其他配置...
+	},
+	"references": [
+		{ "path": "./tsconfig.app.json" },
+		{ "path": "./tsconfig.node.json" }
+		// {
+		// "path": "../../packages/my-shared"
+		// }
+	]
+}

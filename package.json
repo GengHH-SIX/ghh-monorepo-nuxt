@@ -1,0 +1,27 @@
+{
+	"name": "monorepo-nuxt",
+	"version": "1.0.0",
+	"description": "极大成者，使用nuxt构建的monorepo项目，会集成shadcn、reka-ui、自定义原生组件、UI组件的二次封装，以及附加的其他新型工具等功能",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"devDependencies": {
+		"typescript": "^5.9.3"
+	},
+	"keywords": [
+		"nuxt",
+		"shadcn-vue",
+		"reka-ui",
+		"custom-components"
+	],
+	"author": "GengHH",
+	"license": "ISC",
+	"packageManager": "pnpm@10.11.0",
+	"dependencies": {
+		"clsx": "^2.1.1",
+		"lucide-vue-next": "^0.562.0",
+		"tailwind-merge": "^3.4.0",
+		"tailwindcss": "^4.1.18"
+	}
+}

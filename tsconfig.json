@@ -1,0 +1,15 @@
+{
+	"extends": "./tsconfig.build.json",
+	"files": [],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@monorepo-nuxt/*": ["packages/*/src"]
+		},
+		"noEmit": true
+	},
+	"references": [
+		// { "path": "packages/my-shared" }
+		// { "path": "./packages/my-reka-ui/tsconfig.json" }
+	]
+}

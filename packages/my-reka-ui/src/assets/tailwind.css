@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+@theme {
+	--spacing: 1px;
+}
+@utility flex-center {
+	@apply flex items-center justify-center;
+}
+@utility inline-flex-center {
+	@apply inline-flex items-center justify-center;
+}
+@layer base {
+	body {
+		@apply bg-gray-50;
+	}
+}
+@layer components {
+	.avatar {
+		.AvatarRoot {
+			@apply inline-flex items-center justify-center align-middle overflow-hidden select-none h-45 w-45  rounded-full bg-(--black-a3);
+			/* display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			vertical-align: middle;
+			overflow: hidden;
+			user-select: none;
+			width: 45px;
+			height: 45px;
+			border-radius: 100%;
+			background-color: var(--black-a3); */
+		}
+
+		.AvatarImage {
+			@apply w-full h-full object-cover;
+			/* object-fit: cover; */
+			/* border-radius: inherit; */
+		}
+
+		.AvatarFallback {
+			@apply w-full h-full flex items-center justify-center bg-white  leading-[15px] font-[500] text-base text-(--grass-11);
+			/* align-items: center;
+			justify-content: center;
+			background-color: white;
+			color: var(--grass-11);
+			font-size: 15px;
+			line-height: 1;
+			font-weight: 500; */
+		}
+	}
+}
