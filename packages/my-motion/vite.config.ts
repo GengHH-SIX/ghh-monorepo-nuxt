@@ -3,6 +3,37 @@ import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
 
+const globalConfig = {
+	vue: 'Vue',
+	'motion-v': 'MotionV',
+};
+
+const chunkDirMap: Record<string, string> = {
+	vendor: 'vendor', // 第三方依赖包
+	composables: 'composables',
+	components: 'components',
+	animations: 'animations',
+};
+
+// 将 manualChunks 的逻辑提取为一个函数，方便复用
+function createManualChunks() {
+	return (id: string) => {
+		// 将工具函数单独打包
+		if (id.includes('src/composables/')) {
+			return 'composables';
+		}
+		if (id.includes('src/components/')) {
+			return 'components';
+		}
+		if (id.includes('src/animations/')) {
+			return 'animations';
+		}
+		// 第三方依赖
+		if (id.includes('node_modules')) {
+			return 'vendor';
+		}
+	};
+}
 // https://vite.dev/config/
 export default defineConfig({
 	plugins: [
@@ -39,54 +70,42 @@ export default defineConfig({
 		},
 		rollupOptions: {
 			external: ['vue', 'motion-v'],
-			output: {
-				globals: {
-					vue: 'Vue',
-					'motion-v': 'MotionV',
+			output: [
+				// ESM 格式配置
+				{
+					format: 'es',
+					dir: 'dist',
+					entryFileNames: 'es/up-motion.es.js',
+					chunkFileNames: (chunkInfo) => {
+						const dirName = chunkDirMap[chunkInfo.name];
+						const ext = 'es.js';
+						return dirName
+							? `es/${dirName}/index.${ext}`
+							: `es/[name]-[hash].${ext}`;
+					},
+					// manualChunks 定义在此
+					manualChunks: createManualChunks(), // 使用统一的函数
+					globals: globalConfig,
+					exports: 'named',
 				},
-				exports: 'named',
-				inlineDynamicImports: false,
-				// TODO 手动分块， Tree-Shaking
-				// 代码分割配置
-				manualChunks: (id) => {
-					// 将工具函数单独打包
-					if (id.includes('src/composables/')) {
-						return 'composables';
-					}
-					if (id.includes('src/components/')) {
-						return 'components';
-					}
-					if (id.includes('src/animations/')) {
-						return 'animations';
-					}
-					// 第三方依赖
-					if (id.includes('node_modules')) {
-						return 'vendor';
-					}
+				// CJS 格式配置
+				{
+					format: 'cjs',
+					dir: 'dist',
+					entryFileNames: 'cjs/up-motion.cjs',
+					chunkFileNames: (chunkInfo) => {
+						const dirName = chunkDirMap[chunkInfo.name];
+						const ext = 'cjs';
+						return dirName
+							? `cjs/${dirName}/index.${ext}`
+							: `cjs/[name]-[hash].${ext}`;
+					},
+					// manualChunks 定义在此
+					manualChunks: createManualChunks(), // 使用同一个函数
+					globals: globalConfig,
+					exports: 'named',
 				},
-				// 2. 【新增】为代码分割产生的“块”文件定义命名规则
-				chunkFileNames: (chunkInfo) => {
-					// chunkInfo.name 就是 manualChunks 函数返回的字符串（如 'composables'）
-					const fileNameMap: Record<string, string> = {
-						vendor: 'vendor', // 第三方依赖包
-						composables: 'composables',
-						components: 'components',
-						animations: 'animations',
-					};
-					const name = fileNameMap[chunkInfo.name] || chunkInfo.name;
-					// 根据格式返回对应的后缀名，与你的 fileName 函数逻辑保持一致
-					if (chunkInfo.moduleIds.some((id) => id.includes('node_modules'))) {
-						// 如果是vendor，通常希望是.cjs
-						return `[format]/${name}.cjs`;
-					}
-					return `[format]/${name}.[format].js`;
-				},
-				// 3. （可选但推荐）显式定义入口文件的命名规则，确保清晰
-				entryFileNames: '[format]/up-motion.[format].js',
-				// 压缩配置
-				compact: true,
-				minifyInternalExports: true,
-			},
+			],
 		},
 		target: 'es2018',
 		outDir: 'dist',
