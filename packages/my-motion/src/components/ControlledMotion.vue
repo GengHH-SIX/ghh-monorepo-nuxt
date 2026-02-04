@@ -35,7 +35,7 @@ const props = defineProps<ControlledMotionProps>();
 //   priority?: 'critical' | 'normal' | 'decorative' // 动画优先级 '关键' | '普通' | '装饰'
 // }>()
 const motionRef = ref();
-defineExpose({ motionRef })
+// defineExpose({ motionRef })
 
 // 获取全局动画控制
 const animationControler = useAnimation()
@@ -76,4 +76,6 @@ const processedProps = computed(() => {
   })
   return newProp;
 })
+
+// defineExpose({} as ComponentInstance<typeof Motion>)
 </script>

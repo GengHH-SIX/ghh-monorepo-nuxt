@@ -83,7 +83,7 @@ filter: drop-shadow(0 0 2em #42b883aa);
 
 <script setup lang="ts">
 import { ref, computed, defineComponent } from 'vue'
-import AnimationRoot from './composables/AnimationRoot.ts'
+import AnimationRoot from './components/AnimationRoot.ts'
 import ControlledMotion from './components/ControlledMotion.vue'
 import { SlideUp } from './components/animations'
 import UserProfile from './components/UserProfile.vue'

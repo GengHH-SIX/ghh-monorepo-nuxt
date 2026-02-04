@@ -1,23 +1,69 @@
 {
-  "name": "my-motion",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "motion-v": "^1.10.2",
-    "vue": "^3.5.24"
-  },
-  "devDependencies": {
-    "@types/node": "^24.10.1",
-    "@vitejs/plugin-vue": "^6.0.1",
-    "@vue/tsconfig": "^0.8.1",
-    "typescript": "~5.9.3",
-    "vite": "^7.2.4",
-    "vue-tsc": "^3.1.4"
-  }
+	"name": "up-motion",
+	"description": "Advanced animation toolkit for Vue with motion-v",
+	"version": "1.0.0-alpha.3",
+	"type": "module",
+	"keywords": [
+		"vue",
+		"animation",
+		"motion",
+		"performance"
+	],
+	"main": "./dist/cjs/up-motion.cjs",
+	"module": "./dist/es/up-motion.es.js",
+	"types": "./dist/types/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/es/up-motion.es.js",
+			"require": "./dist/cjs/up-motion.cjs"
+		},
+		"./composables": "./dist/composables/index.es.js",
+		"./components": "./dist/components/index.es.js",
+		"./components/*": "./dist/components/*/index.es.js",
+		"./animations/*": "./dist/animations/*.es.js"
+	},
+	"files": [
+		"dist/es/",
+		"dist/cjs/",
+		"dist/index.d.ts",
+		"README.md",
+		"LICENSE"
+	],
+	"sideEffects": false,
+	"scripts": {
+		"dev": "vite",
+		"build": "run-s build:types build:lib",
+		"build:lib": "rimraf dist && vite build",
+		"build:types": "vue-tsc --project tsconfig.build.json",
+		"size": "size-limit --debug",
+		"analyze": "size-limit --why",
+		"preview": "vite preview",
+		"type-check": "vue-tsc --noEmit"
+	},
+	"dependencies": {
+		"motion-v": "^1.10.2"
+	},
+	"devDependencies": {
+		"@size-limit/esbuild": "^12.0.0",
+		"@size-limit/esbuild-why": "^12.0.0",
+		"@size-limit/file": "^12.0.0",
+		"@size-limit/preset-small-lib": "^12.0.0",
+		"@size-limit/time": "^12.0.0",
+		"@types/node": "^24.10.1",
+		"@vitejs/plugin-vue": "^6.0.1",
+		"@vue/tsconfig": "^0.8.1",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^6.1.2",
+		"rollup-plugin-visualizer": "^6.0.5",
+		"size-limit": "^12.0.0",
+		"terser": "^5.46.0",
+		"typescript": "~5.9.3",
+		"vite": "^7.2.4",
+		"vite-plugin-dts": "^4.5.4",
+		"vue-tsc": "^3.1.4"
+	},
+	"peerDependencies": {
+		"vue": "^3.5.0"
+	}
 }

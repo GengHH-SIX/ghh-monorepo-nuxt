@@ -1,4 +1,7 @@
-import { createAnimationContext, provideAnimation } from './useAnimation';
+import {
+	createAnimationContext,
+	provideAnimation,
+} from '../composables/useAnimation';
 import { defineComponent, h, type PropType } from 'vue';
 
 export interface RootProps {
@@ -10,7 +13,7 @@ export interface RootProps {
  * @description: define animation provider component named AnimationRoot
  * @return {*}
  */
-export default defineComponent({
+export default defineComponent<RootProps>({
 	name: 'AnimationRoot',
 	props: {
 		initialEnabled: {
