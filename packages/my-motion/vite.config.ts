@@ -68,7 +68,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			'@': resolve(__dirname, 'src'),
-			// vue: 'vue/dist/vue.esm-bundler.js',
+			// vue: 'vue/dist/vue.esm-bundler.js',  //使用这个别名，可以使用vue的某些功能，但是在lib打包时候也会进行映射，导致vue组件属性无法提示
 		},
 		extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
 	},

@@ -1,7 +1,7 @@
 [
 	{
 		"name": "up-motion es",
-		"path": "dist/es/up-motion.es.js",
+		"path": "dist/es/index.mjs",
 		"limit": "15 KB",
 		"gzip": true,
 		"brotli": true,
@@ -9,7 +9,7 @@
 	},
 	{
 		"name": "up-motion cjs",
-		"path": "dist/cjs/up-motion.cjs",
+		"path": "dist/cjs/index.js",
 		"limit": "15 KB",
 		"gzip": true,
 		"brotli": true,
