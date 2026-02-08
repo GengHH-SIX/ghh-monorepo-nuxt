@@ -63,8 +63,6 @@ export default defineConfig({
 					exclude: [
 						'src/**/*.unit.test.{js,ts}',
 						'src/**/*.unit.spec.test.{js,ts}',
-						'src/**/*.test.{js,ts}',
-						'src/**/*.spec.{js,ts}',
 					],
 				},
 			},
