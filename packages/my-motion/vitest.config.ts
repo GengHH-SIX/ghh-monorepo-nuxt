@@ -1,4 +1,3 @@
-/// <reference types="vitest/config" />
 import { defineConfig } from 'vitest/config';
 import vue from '@vitejs/plugin-vue';
 
@@ -7,9 +6,9 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			'@': '/src',
+			vue: 'vue/dist/vue.esm-bundler.js',
 		},
 	},
-	// outputfile: '',
 	test: {
 		globals: true,
 		reporters: ['default'],
