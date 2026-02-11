@@ -1,4 +1,4 @@
-import ControlledMotion from '../ControlledMotion.vue';
+import UpMotion from '../UpMotion';
 import { defineComponent, h } from 'vue';
 
 /**
@@ -18,7 +18,7 @@ function createPresetMotion(presetProps: any) {
 	 */
 	return (overrideProps: any = {}, slots: any = {}) =>
 		defineComponent({
-			components: { ControlledMotion },
+			components: { UpMotion },
 			// 使用传入的覆盖属性的键作为组件props
 			props: Object.keys(overrideProps || {}),
 			render() {
@@ -30,8 +30,8 @@ function createPresetMotion(presetProps: any) {
 				// 	: this.$slots.default?.();
 
 				const _slots = slots.default ? slots : this.$slots;
-				// 使用合并后的属性和插槽渲染ControlledMotion组件
-				return h(ControlledMotion, mergedProps, _slots);
+				// 使用合并后的属性和插槽渲染UpMotion组件
+				return h(UpMotion, mergedProps, _slots);
 			},
 		});
 }

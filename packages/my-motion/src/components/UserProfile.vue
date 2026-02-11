@@ -1,29 +1,29 @@
 <template>
   <!-- 业务组件完全使用标准API -->
-  <ControlledMotion :initial="{ opacity: 0, y: 30 }" :animate="{ opacity: 1, y: 0 }" :while-hover="{ scale: 1.02 }"
+  <UpMotion :initial="{ opacity: 0, y: 30 }" :animate="{ opacity: 1, y: 0 }" :while-hover="{ scale: 1.02 }"
     class="profile-card">
     <div class="avatar-container">
-      <ControlledMotion :initial="{ scale: 0 }" :animate="{ scale: 1 }" :transition="{ type: 'spring' }">
+      <UpMotion :initial="{ scale: 0 }" :animate="{ scale: 1 }" :transition="{ type: 'spring' }">
         <img :src="user.avatar" class="avatar" />
-      </ControlledMotion>
+      </UpMotion>
     </div>
 
     <div class="info">
-      <ControlledMotion :initial="{ x: -20 }" :animate="{ x: 0 }" :transition="{ delay: 0.1 }">
+      <UpMotion :initial="{ x: -20 }" :animate="{ x: 0 }" :transition="{ delay: 0.1 }">
         <h2>{{ user.name }}</h2>
-      </ControlledMotion>
+      </UpMotion>
 
-      <ControlledMotion :initial="{ x: -20 }" :animate="{ x: 0 }" :transition="{ delay: 0.2 }">
+      <UpMotion :initial="{ x: -20 }" :animate="{ x: 0 }" :transition="{ delay: 0.2 }">
         <p>{{ user.bio }}</p>
-      </ControlledMotion>
+      </UpMotion>
     </div>
-  </ControlledMotion>
+  </UpMotion>
 </template>
 
 <script setup lang="ts">
 // 重点：业务组件完全不需要知道动画控制逻辑！
-// 它只是正常使用ControlledMotion组件
-import ControlledMotion from '../components/ControlledMotion.vue'
+// 它只是正常使用UpMotion组件
+import UpMotion from '../components/UpMotion'
 
 const user = {
   name: '张三',

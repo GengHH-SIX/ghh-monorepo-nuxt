@@ -1,33 +1,3 @@
-<!-- <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
-<template>
-<div>
-  <a href="https://vite.dev" target="_blank">
-    <img src="/vite.svg" class="logo" alt="Vite logo" />
-  </a>
-  <a href="https://vuejs.org/" target="_blank">
-    <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-  </a>
-</div>
-<HelloWorld msg="Vite + Vue" />
-</template>
-
-<style scoped>
-.logo {
-height: 6em;
-padding: 1.5em;
-will-change: filter;
-transition: filter 300ms;
-}
-.logo:hover {
-filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style> -->
 <template>
   <AnimationRoot ref="animationProvider" :initial-enabled="true" :auto-detect-performance="true">
     <!-- 全局动画控制UI -->
@@ -46,17 +16,16 @@ filter: drop-shadow(0 0 2em #42b883aa);
     <!-- <CtlFnComponent></CtlFnComponent> -->
     <!-- 业务内容区域 -->
     <main>
-      <!-- 示例1：使用ControlledMotion（推荐） -->
-      <ControlledMotion :initial="{ opacity: 0, x: -150 }" :animate="{ opacity: 1, x: 0 }"
-        :while-in-view="{ scale: 1.1 }" :transition="{ duration: 0.6 }" priority="decorative"
-        @viewportEnter="console.log('进入视口')">
+      <!-- 示例1：使用UpMotion（推荐） -->
+      <UpMotion :initial="{ opacity: 0, x: -150 }" :animate="{ opacity: 1, x: 0 }" :while-in-view="{ scale: 1.1 }"
+        :transition="{ duration: 0.6 }" priority="decorative" @viewportEnter="console.log('进入视口')">
         <Motion as-child :while-hover="{ background: '#f00' }" :transition="{ duration: 1, ease: easeInOut }">
           <div class="card">
             <h2>自动受控的卡片</h2>
             <p>这个组件的动画会自动响应全局设置</p>
           </div>
         </Motion>
-      </ControlledMotion>
+      </UpMotion>
 
       <!-- 示例2：使用预设动画组件 -->
       <!-- <SlideUp :transition="{ duration: 0.5 }">
@@ -66,31 +35,32 @@ filter: drop-shadow(0 0 2em #42b883aa);
       </SlideUp> -->
 
       <!-- 示例3：嵌套使用 -->
-      <!-- <ControlledMotion :initial="{ opacity: 0 }" :animate="{ opacity: 1 }">
+      <!-- <UpMotion :initial="{ opacity: 0 }" :animate="{ opacity: 1 }">
         <div class="parent">
-          <ControlledMotion v-for="item in items" :key="item.id" :initial="{ scale: 0 }" :animate="{ scale: 1 }"
+          <UpMotion v-for="item in items" :key="item.id" :initial="{ scale: 0 }" :animate="{ scale: 1 }"
             :transition="{ delay: item.id * 0.1 }" class="child">
             {{ item.name }}
-          </ControlledMotion>
+          </UpMotion>
         </div>
-      </ControlledMotion> -->
+      </UpMotion> -->
 
       <!-- 示例4：深度嵌套的子组件 -->
       <!-- <UserProfile /> -->
     </main>
+    <UpMotionExample>new motion</UpMotionExample>
   </AnimationRoot>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineComponent } from 'vue'
-import AnimationRoot from './components/AnimationRoot.ts'
-import ControlledMotion from './components/ControlledMotion.vue'
-import { SlideUp } from './components/animations'
-import UserProfile from './components/UserProfile.vue'
-import { useAnimation } from './composables/useAnimation'
-import { FastForward } from 'lucide-vue-next'
-import { easeInOut, Motion } from 'motion-v'
-
+import { ref, computed, defineComponent } from 'vue';
+import AnimationRoot from './components/AnimationRoot.ts';
+import UpMotion from './components/UpMotion';
+// import { SlideUp } from './components/animations';
+// import UserProfile from './components/UserProfile.vue';
+import { useAnimation } from './composables/useAnimation';
+// import { FastForward } from 'lucide-vue-next';
+import { easeInOut, Motion } from 'motion-v';
+import UpMotionExample from './examples/UpMotionExample.vue';
 // // 获取动画控制
 // const animationControl = useAnimation()
 
@@ -107,20 +77,20 @@ import { easeInOut, Motion } from 'motion-v'
 const CtlFnComponent = defineComponent({
   name: 'CtlFnComponent',
   setup() {
-    const animationControl = useAnimation()
+    const animationControl = useAnimation();
     const selectedMode = computed({
       get: () => animationControl.state.value.mode,
-      set: (value) => animationControl.enable(value as any)
-    })
+      set: (value) => animationControl.enable(value as any),
+    });
     const onModeChange = (event: Event) => {
-      const target = event.target as HTMLSelectElement
-      animationControl.enable(target.value as any)
-    }
+      const target = event.target as HTMLSelectElement;
+      animationControl.enable(target.value as any);
+    };
     return {
       animationControl,
       selectedMode,
-      onModeChange
-    }
+      onModeChange,
+    };
   },
   template: `
   <div class="animation-controls">
@@ -135,18 +105,15 @@ const CtlFnComponent = defineComponent({
       <option value="state">无状态动画</option>
     </select>
   </div>
-  `
-}
-  // }
-)
-
+  `,
+});
 
 // 示例数据
 const items = ref([
   { id: 1, name: '项目 1' },
   { id: 2, name: '项目 2' },
-  { id: 3, name: '项目 3' }
-])
+  { id: 3, name: '项目 3' },
+]);
 </script>
 
 <style>

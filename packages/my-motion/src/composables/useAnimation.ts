@@ -47,8 +47,8 @@ export function createAnimationContext(
 	const detectProformace = () => {
 		if (state.value.performance === 'auto') {
 			const navigator: any = window.navigator;
-			(console.log('[useAnimation]: detect performance level'),
-				navigator.connection.effectiveType);
+			// (console.log('[useAnimation]: detect performance level'),
+			// 	navigator.connection.effectiveType);
 			const isLowEndDevice =
 				/(Android | Webos | Iphone | Ipad)/i.test(navigator.userAgent) ||
 				(navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) ||

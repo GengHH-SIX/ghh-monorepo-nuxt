@@ -15,20 +15,20 @@ pnpm add motion-v up-motion;
 ## 2. Import
 
 ```
-import {AnimationRoot,ControlledMotion} from 'up-motion';
+import {AnimationRoot,UpMotion} from 'up-motion';
 ```
 
 ## 3. Use
 
 ```vue
 <AnimationRoot :initial-enabled="true" :auto-detect-performance="true">
-    <ControlledMotion :initial="{ opacity: 0, x: -150 }" :animate="{ opacity: 1, x: 0 }"
+    <UpMotion :initial="{ opacity: 0, x: -150 }" :animate="{ opacity: 1, x: 0 }"
       :while-in-view="{ scale: 1.1 }" :transition="{ duration: 0.6 }" priority="decorative">
       <Motion as-child :while-hover="{ background: '#f00' }" :transition="{ duration: 1, ease: easeInOut }">
         <div class="card">
           ... 
         </div>
       </Motion>
-    </ControlledMotion>
+    </UpMotion>
   </AnimationRoot>
 ```

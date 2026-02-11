@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils';
 import AnimationRoot from '../AnimationRoot';
 import { useAnimation } from '../../composables/useAnimation';
 import { h, defineComponent } from 'vue';
-// import ControlledMotion from '../ControlledMotion.vue';
+// import UpMotion from '../UpMotion';
 
 // test('test', () => {
 // 	expect(true).toBe(true);
@@ -62,7 +62,7 @@ describe('AnimationRoot Component Test', () => {
 			props: donotAutoDetectPerformance,
 			slots: {
 				// TODO
-				default: '<ControlledMotion>Hello world</ControlledMotion>',
+				default: '<UpMotion>Hello world</UpMotion>',
 			},
 		});
 		expect(wrapper.find('div').text()).toContain('Hello world');
