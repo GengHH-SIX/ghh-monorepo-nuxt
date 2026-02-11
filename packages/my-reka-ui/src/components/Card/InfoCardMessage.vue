@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IconWrap from '../icon/IconWrap.vue';
+import IconWrap from '../Icon/IconWrap.vue';
 import { cn } from '@monorepo-nuxt/my-shared';
 type InfoCardMessage = {
 	name?: string;
@@ -57,7 +57,7 @@ const click = () => {
 	>
 		<IconWrap
 			:name="'CircleArrowRight'"
-			:class="cn(`pr-5`)"
+			:class="cn(`mr-5`)"
 			:size="16"
 		></IconWrap>
 		click me

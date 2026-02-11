@@ -12,8 +12,9 @@ import { RekaButton, RekaInfoCard } from '@monorepo-nuxt/my-reka-ui';
 			<img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
 		</a>
 	</div>
-	<HelloWorld msg="Vite + Vue" />
-	<RekaButton> 点击哈哈哈 </RekaButton>
+	<h1 class="text-red-500 text-xl">Vite + Vue</h1>
+	<HelloWorld class="text-red-500 text-8xl bg-black" msg="Vite + Vue" />
+	<RekaButton class="text-red-500"> 点击哈哈哈 </RekaButton>
 	<RekaInfoCard></RekaInfoCard>
 </template>
 

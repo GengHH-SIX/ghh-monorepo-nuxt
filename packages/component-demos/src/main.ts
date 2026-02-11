@@ -1,5 +1,8 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+// import './style.css';
+import './assets/css/tailwind.css';
 
-createApp(App).mount('#app')
+// import '@monorepo-nuxt/my-reka-ui/style.css';
+import App from './App.vue';
+
+createApp(App).mount('#app');

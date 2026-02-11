@@ -22,7 +22,7 @@ export default defineConfig({
 				declarationMap: true, // 1.生成声明映射文件
 				emitDeclarationOnly: false, // 只输出类型声明文件
 			},
-			rollupTypes: false, // 2.先禁用 rollup，以便生成映射文件
+			rollupTypes: false, // 2.先禁用 rollup，以便生成多个映射文件
 			insertTypesEntry: true, // 生成 index.d.ts 类型入口文件
 			/**
 			 *一、declarationMap: false,rollupTypes: true  insertTypesEntry: true,再配合packages.json中的types；
