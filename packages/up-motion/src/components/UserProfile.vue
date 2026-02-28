@@ -23,7 +23,7 @@
 <script setup lang="ts">
 // 重点：业务组件完全不需要知道动画控制逻辑！
 // 它只是正常使用UpMotion组件
-import UpMotion from '../components/UpMotion'
+import UpMotion from './UpMotion'
 
 const user = {
   name: '张三',

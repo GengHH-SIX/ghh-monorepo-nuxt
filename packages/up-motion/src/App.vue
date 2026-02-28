@@ -54,10 +54,10 @@
 <script setup lang="ts">
 import { ref, computed, defineComponent } from 'vue';
 import AnimationRoot from './components/AnimationRoot.ts';
-import UpMotion from './components/UpMotion';
+import UpMotion from './components/UpMotion.ts';
 // import { SlideUp } from './components/animations';
 // import UserProfile from './components/UserProfile.vue';
-import { useAnimation } from './composables/useAnimation';
+import { useAnimation } from './composables/useAnimation.ts';
 // import { FastForward } from 'lucide-vue-next';
 import { easeInOut, Motion } from 'motion-v';
 import UpMotionExample from './examples/UpMotionExample.vue';
