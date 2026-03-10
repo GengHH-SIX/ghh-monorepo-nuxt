@@ -32,3 +32,7 @@ import {AnimationRoot,UpMotion} from 'up-motion';
     </UpMotion>
   </AnimationRoot>
 ```
+
+## Document
+
+#### Docs building... (Will be Builded by nuxt and shadcn-vue!)

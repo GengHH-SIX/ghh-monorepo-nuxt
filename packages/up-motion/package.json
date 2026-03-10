@@ -45,7 +45,8 @@
 		"test:dom": "vitest run --project=Component",
 		"coverage": "vitest run --coverage",
 		"preview:coverage": "vite preview --outDir ./coverage",
-		"test:browser": "vitest --config=vitest.browser.config.ts"
+		"test:browser": "vitest --config=vitest.browser.config.ts",
+		"docs:dev": "cd docs && npm run dev"
 	},
 	"dependencies": {
 		"motion-v": "^1.10.2"
